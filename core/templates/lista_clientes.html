@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Lista de Clientes{% endblock %}
+
+{% block corpo %}
+<div class="text-center">
+    <h3>
+        <label class="text-primary">Lista de Clientes</label>
+    </h3>
+</div>
+<div class="container mt-4">
+    <button class="btn btn-primary" onclick="location.href='cadastra-cliente'" >NOVO</button>
+</div>
+{% include 'form_pesquisa.html' %}
+<div class="container mt-4">
+    {% if total > 0 %}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Tipo Pessoa</th>
+                <th>Estado</th>
+                <th>Cidade</th>
+                <th class="text-center">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in porPagina %}
+            <tr>
+                <td>{{ cliente.nome }}</td>
+                <td>{{ cliente.email }}</td>
+                <td>{{ cliente.tp_pessoa }}</td>
+                <td>{{ cliente.estado }}</td>
+                <td>{{ cliente.cidade }}</td>
+                <td class="text-center">
+                    <button class="btn btn-warning" onclick="location.href='altera-cliente/{{ cliente.id }}'">ALTERAR</button>
+                    <button class="btn btn-danger" onclick="location.href='exclui-cliente/{{ cliente.id }}'">EXCLUIR</button>
+                </td>                
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4">
+                    <label>Total de Registros: {{ total }}</label>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    {% include 'paginacao.html' %}
+    {% elif procura %}
+    {% include 'sem_registro_encontrado.html' %}
+    {% else %}
+    {% include 'sem_item_cadastrado.html' %}
+    {% endif %}
+</div>
+{% endblock %}

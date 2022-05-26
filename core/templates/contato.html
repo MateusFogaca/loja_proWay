@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Contato{% endblock %}
+
+{% block corpo %}
+<form class="form-control">
+    <div class="mb-3">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="nome" placeholder="Nome Completo" required />
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">E-mail</label>
+        <input type="email" class="form-control" id="email" placeholder="usuario@provedor.com.br" required />
+    </div>
+    <div class="mb-3">
+        <label for="mensagem" class="form-label">Mensagem</label>
+        <textarea class="form-control" id="mensagem" rows="3" required></textarea>
+    </div>
+    <div class="mb-3">
+        <input type="submit" value="Enviar" class="btn btn-primary" />
+        <input type="reset" value="Cancelar" class="btn btn-danger" />
+    </div>
+</form>
+{% endblock %}

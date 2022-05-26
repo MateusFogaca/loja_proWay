@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Alteração de Cidade{% endblock %}
+
+{% block corpo %}
+<div class="form-control">
+    <form method="post">
+        {% csrf_token %}
+        <div class="text-center">
+            <h3>
+                <label class="text-primary">Alteração de Cidade - {{ cidade.nome }}</label>
+            </h3>
+        </div>
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" name="nome" value="{{ cidade.nome }}" maxlength="50" required />
+        </div>
+        <div class="mb-3">
+            <label for="estado" class="form-label">Estado</label>
+            <select name="estado" id="estado" class="form-select">
+                <option value="0">Selecione</option>
+                {% for estado in estados %}
+                {% if estadoId == estado.id %}
+                <option value="{{ estado.id }}" selected >{{ estado.nome }}</option>
+                {% else %}
+                <option value="{{ estado.id }}">{{ estado.nome }}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+        {% include 'acoes_form_altera.html' %}
+    </form>
+</div>
+{% endblock %}

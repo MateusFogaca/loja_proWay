@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Lista de Fornecedores{% endblock %}
+
+{% block corpo %}
+<div class="text-center">
+    <h3>
+        <label class="text-primary">Lista de Fornecedores</label>
+    </h3>
+</div>
+<div class="container mt-4">
+    <button class="btn btn-primary" onclick="location.href='cadastra-fornecedor'">NOVO</button>
+</div>
+{% include 'form_pesquisa.html' %}
+<div class="container mt-4">
+    {% if total > 0 %}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Fornecedor</th>
+                <th>Estado</th>
+                <th>Cidade</th>
+                <th class="text-center">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fornecedor in porPagina %}
+            <tr>
+                <td>{{ fornecedor.fantasia }}</td>
+                <td>{{ fornecedor.estado }}</td>
+                <td>{{ fornecedor.cidade }}</td>
+                <td class="text-center">
+                    <button class="btn btn-warning" onclick="location.href='altera-fornecedor/{{ fornecedor.id }}'">ALTERAR</button>
+                    <button class="btn btn-danger" onclick="location.href='exclui-fornecedor/{{ fornecedor.id }}'">EXCLUIR</button>
+                </td>                
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <label>Total de Registros: {{ total }}</label>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    {% include 'paginacao.html' %}
+    {% elif procura %}
+    {% include 'sem_registro_encontrado.html' %}
+    {% else %}
+    {% include 'sem_item_cadastrado.html' %}
+    {% endif %}
+</div>
+{% endblock %}

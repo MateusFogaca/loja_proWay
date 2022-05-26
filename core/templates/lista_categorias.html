@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Lista de Categorias{% endblock %}
+
+{% block corpo %}
+<div class="text-center">
+    <h3>
+        <label class="text-primary">Lista de Categorias</label>
+    </h3>
+</div>
+<div class="container mt-4">
+    <button class="btn btn-primary" onclick="location.href='cadastra-categoria'">NOVO</button>
+</div>
+{% include 'form_pesquisa.html' %}
+<div class="container mt-4">
+    {% if total > 0 %}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th class="text-center">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for categoria in categorias %}
+            <tr>
+                <td>{{ categoria.nome }}</td>
+                <td class="text-center">
+                    <button class="btn btn-warning" onclick="location.href='altera-categoria/{{ categoria.id }}'">ALTERAR</button>
+                    <button class="btn btn-danger" onclick="location.href='exclui-categoria/{{ categoria.id }}'">EXCLUIR</button>
+                </td>                
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <label>Total de Registros: {{ total }}</label>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    {% elif procura %}
+    {% include 'sem_registro_encontrado.html' %}
+    {% else %}
+    {% include 'sem_item_cadastrado.html' %}
+    {% endif %}
+</div>
+{% endblock %}

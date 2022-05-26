@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Cadastro de Estado{% endblock %}
+
+{% block corpo %}
+<div class="form-control">
+    <form method="post">
+        {% csrf_token %}
+        <div class="text-center">
+            <h3>
+                <label class="text-primary">Cadastro de Estado</label>
+            </h3>
+        </div>
+        <div class="mb-3">
+            <label for="sigla" class="form-label">Sigla</label>
+            <input type="text" class="form-control" name="sigla" id="sigla" maxlength="2" minlength="2" required />
+        </div>
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" name="nome" id="nome" maxlength="50" required />
+        </div>
+        {% include 'acoes_form.html' %}
+    </form>
+</div>
+{% endblock %}

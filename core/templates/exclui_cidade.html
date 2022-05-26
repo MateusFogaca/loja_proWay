@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Exclusão de Cidade{% endblock %}
+
+{% block corpo %}
+<div class="form-control">
+    <form method="post">
+        {% csrf_token %}
+        <div class="text-center">
+            <h3>
+                <label class="text-primary">Exclusão de Cidade - {{cidade.nome}}</label>
+            </h3>
+        </div>
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" value="{{cidade.nome}}" maxlength="50" readonly />
+        </div>
+        <div class="mb-3">
+            <label for="estado" class="form-label">Estado</label>
+            <select name="estado" id="estado" class="form-select" disabled >
+                <option value="{{estado.id}}">{{estado.nome}}</option>
+
+            </select>
+        </div>
+        {% include 'acoes_form_exclui.html' %}
+    </form>
+</div>
+{% endblock %}  

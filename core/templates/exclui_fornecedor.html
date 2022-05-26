@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Exclusão de Fornecedor{% endblock %}
+
+{% block corpo %}
+<div class="form-control">
+    <form method="post">
+        {% csrf_token %}
+        <div class="text-center">
+            <h3>
+                <label class="text-primary">Exclusão de Fornecedor - {{forn.fantasia}}</label>
+            </h3>
+        </div>
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" maxlength="50" value="{{forn.nome}}" disabled />
+        </div>
+        <div class="mb-3">
+            <label for="fantasia" class="form-label">Fantasia</label>
+            <input type="text" class="form-control" id="fantasia" maxlength="100" value="{{forn.fantasia}}" disabled />
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email" maxlength="100" value="{{forn.email}}" disabled />
+        </div>
+        <div class="mb-3">
+            <label for="cpf_cnpj" class="form-label">CPF/CNPJ</label>
+            <input type="text" class="form-control" id="cpf_cnpj" maxlength="14" value="{{forn.cpfcnpj}}" disabled />
+        </div>
+        <div class="mb-3">
+            <label for="estado" class="form-label">Estado</label>
+            <select id="estado" name="estado" class="form-select" disabled>
+                <option value="{{estado.id}}">{{estado.nome}}</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="cidade" class="form-label">Cidade</label>
+            <select id="cidade" name="cidade" class="form-select" disabled>
+                <option value="{{cidade.id}}">{{cidade.nome}}</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="tp_pessoa" class="form-label">Tipo de Pessoa</label>
+            <select id="tp_pessoa" name="tp_pessoa" class="form-select" disabled >
+                <option value="{{ tipo.id }}">{{tipo.descricao}}</option>
+
+            </select>
+        </div>
+        {% include 'acoes_form_exclui.html' %}
+    </form>
+</div>
+{% endblock %}

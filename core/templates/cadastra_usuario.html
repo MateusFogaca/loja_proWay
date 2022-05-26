@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Cadastro de Usuário{% endblock %}
+
+{% block corpo %}
+<div class="form-control">
+    <form method="post" >
+        {% csrf_token %}
+        <div class="text-center">
+            <h3>
+                <label class="text-primary">Cadastro de Usuário</label>
+            </h3>
+        </div>
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" name="nome" id="nome" maxlength="50" required />
+        </div>
+        <div class="mb-3">
+            <label for="sobrenome" class="form-label">Sobrenome</label>
+            <input type="text" class="form-control" name="sobrenome" id="sobrenome" maxlength="50" required />
+        </div>
+        <div class="mb-3">
+            <label for="login" class="form-label">Login</label>
+            <input type="text" class="form-control" name="login" id="login" maxlength="50" required />
+        </div>
+        <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            <input type="password" class="form-control" name="senha" id="senha" required maxlength="50" />
+        </div>        
+        {% include 'acoes_form.html' %}
+    </form>
+</div>
+{% endblock %}

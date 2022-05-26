@@ -1,0 +1,15 @@
+body{
+    background-color: #fdfdfd;
+}
+
+.ImagemInicio{
+    margin-left: 20%;
+    height: 40%;
+    width: 40%;
+    position: relative;
+}
+
+#formPesquisa{
+    width: 80%;
+    
+}
